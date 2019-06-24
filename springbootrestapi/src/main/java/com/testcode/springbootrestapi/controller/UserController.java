@@ -54,7 +54,7 @@ public class UserController {
 		usr.setDesignation(user.getDesignation());
 		usr.setCreatedAt(user.getCreatedAt());
 		
-		User userUpdate=userDao.save(user);
+		User userUpdate=userDao.save(usr);
 		return ResponseEntity.ok().body(userUpdate);
 	}
 	
