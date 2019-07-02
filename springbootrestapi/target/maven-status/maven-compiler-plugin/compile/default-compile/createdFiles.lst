@@ -1,5 +1,14 @@
 com\testcode\springbootrestapi\UserApplication.class
+com\testcode\springbootrestapi\service\CustomUserDetails.class
+com\testcode\springbootrestapi\model\Role.class
 com\testcode\springbootrestapi\repository\UserRepository.class
+com\testcode\springbootrestapi\config\SecurityConfig.class
+com\testcode\springbootrestapi\controller\AdminController.class
+com\testcode\springbootrestapi\service\CustomUserDetailsService.class
+com\testcode\springbootrestapi\controller\ApplicationController.class
 com\testcode\springbootrestapi\dao\UserDao.class
+com\testcode\springbootrestapi\repository\LoginRepository.class
+com\testcode\springbootrestapi\model\Login.class
+com\testcode\springbootrestapi\repository\RoleRepository.class
 com\testcode\springbootrestapi\model\User.class
 com\testcode\springbootrestapi\controller\UserController.class
