@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,7 @@ public class UserController {
 		return userDao.findAll();
 	}
 	
-	@GetMapping("/notes/{id}")
+	@GetMapping("/user/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable(value="id") Long id){
 		User user= userDao.findOne(id);
 		if(user == null) {
@@ -51,22 +52,26 @@ public class UserController {
 			return ResponseEntity.notFound().build();
 		}
 		usr.setName(user.getName());
-		usr.setDesignation(user.getDesignation());
-		usr.setCreatedAt(user.getCreatedAt());
-		
+		usr.setPhone(user.getPhone());
+		usr.setEmail(user.getEmail());
+		usr.setAge(user.getAge());
+		usr.setLocation(user.getLocation());
+		usr.setUpdateddAt(user.getUpdateddAt());
+		usr.setRoles(user.getRoles());
 		User userUpdate=userDao.save(usr);
 		return ResponseEntity.ok().body(userUpdate);
 	}
 	
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable(value="id") Long id){
+	public ResponseEntity<?> deleteUser(@PathVariable(value="id") Long id){
 		User user=userDao.findOne(id);
 		if(user==null) {
-			return ResponseEntity.notFound().build();
+			//return ResponseEntity.notFound().build();
+			return ((BodyBuilder) ResponseEntity.notFound()).body("User Not Found");
 		}
 		
 		userDao.delete(user);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok().body(user.getName()+"  Successfully Deleted");
 	}
 	
 	

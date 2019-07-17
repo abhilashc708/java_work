@@ -1,14 +1,6 @@
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\config\SecurityConfig.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\repository\LoginRepository.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\controller\ApplicationController.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\service\CustomUserDetailsService.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\controller\AdminController.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\repository\UserRepository.java
 D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\UserApplication.java
 D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\controller\UserController.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\model\Login.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\service\CustomUserDetails.java
 D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\model\User.java
 D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\model\Role.java
-D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\repository\RoleRepository.java
+D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\repository\UserRepository.java
 D:\web work\test2\springbootrestapi\src\main\java\com\testcode\springbootrestapi\dao\UserDao.java

@@ -4,24 +4,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 public class Role {
 	
 	@Id
 	@GeneratedValue
-	private int roleid;
+	private Long roleid;
 	private String role;
-	public int getRoleid() {
+	
+	
+	
+	public Long getRoleid() {
 		return roleid;
 	}
-	public void setRoleid(int roleid) {
+	public void setRoleid(Long roleid) {
 		this.roleid = roleid;
 	}
 	public String getRole() {
