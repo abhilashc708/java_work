@@ -1,6 +1,7 @@
 package com.testcode.springbootrestapi.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="users")
@@ -48,10 +51,12 @@ public class User {
 	@NotBlank
 	private String location;
 	
+	@JsonIgnore
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date createdAt;
-
+	
+	@JsonIgnore
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updateddAt;
@@ -132,7 +137,19 @@ public class User {
 		this.roles = roles;
 	}
 	
-	
+	public void addRole(Role c) {
+		if(roles==null){
+			roles=new HashSet<Role>();
+		}
+        this.roles.add(c);
+        
+    }
+
+    public void removeRole(Role role) {
+    	if(roles!=null && roles.contains(role)){
+			roles.remove(role);
+		}
+    }
 	
 	
 }
