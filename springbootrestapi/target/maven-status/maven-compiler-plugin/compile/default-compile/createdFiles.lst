@@ -1,6 +1,0 @@
-com\testcode\springbootrestapi\UserApplication.class
-com\testcode\springbootrestapi\dao\UserDao.class
-com\testcode\springbootrestapi\model\Role.class
-com\testcode\springbootrestapi\repository\UserRepository.class
-com\testcode\springbootrestapi\model\User.class
-com\testcode\springbootrestapi\controller\UserController.class
