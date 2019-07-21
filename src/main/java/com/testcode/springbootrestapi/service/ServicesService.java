@@ -46,4 +46,30 @@ public class ServicesService {
 		servicesRepository.delete(services);
 	}
 
+	public ServicesDTO findById(Long serviceId) {
+		ServicesDTO servicesDTO=null;
+		Services services= findOne(serviceId);
+		if(services!=null){
+			servicesDTO= new ServicesDTO();
+			BeanUtils.copyProperties(services, servicesDTO);
+		}		 
+		return servicesDTO;
+	}
+	
+	
+	public boolean updateService(ServicesDTO servicesDTO) {
+		boolean isUpdated=false;
+		Services services = findOne(servicesDTO.getId());
+		BeanUtils.copyProperties(servicesDTO, services);
+		MultipartFile file = servicesDTO.getFile();
+		if (file != null) {
+			String filePath = fileStorageService.storeFileInAPath(file);
+			services.setImages(filePath);
+			servicesDTO.setFile(null);
+		}
+		servicesRepository.save(services);
+		isUpdated=true;
+		return isUpdated;
+	}
+
 }
