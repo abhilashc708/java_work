@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ public class UserController {
 	
 	@PostMapping("/users")
 	public User createUser(@Valid @RequestBody User user) {	
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		return userDao.save(user);	
 	}
 	
@@ -52,6 +54,7 @@ public class UserController {
 			return ResponseEntity.notFound().build();
 		}
 		usr.setName(user.getName());
+		usr.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		usr.setPhone(user.getPhone());
 		usr.setEmail(user.getEmail());
 		usr.setAge(user.getAge());

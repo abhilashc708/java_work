@@ -40,6 +40,9 @@ public class User {
 	private String name;
 	
 	@NotBlank
+	private String password;
+	
+	@NotBlank
 	private String phone;
 	
 	@NotBlank
@@ -79,6 +82,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getPhone() {
