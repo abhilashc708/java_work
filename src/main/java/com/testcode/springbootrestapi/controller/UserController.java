@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.testcode.springbootrestapi.dao.UserDao;
 import com.testcode.springbootrestapi.model.User;
+import com.testcode.springbootrestapi.service.UserService;
 
 @RestController
 @RequestMapping("/company")
 public class UserController {
 	
 	@Autowired
-	UserDao userDao;
+	UserService userDao;
 	
 	@PostMapping("/users")
 	public User createUser(@Valid @RequestBody User user) {	

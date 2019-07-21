@@ -1,4 +1,4 @@
-package com.testcode.springbootrestapi.dao;
+package com.testcode.springbootrestapi.service;
 
 	import java.util.List;
 
@@ -9,7 +9,7 @@ package com.testcode.springbootrestapi.dao;
 	import com.testcode.springbootrestapi.repository.UserRepository;
 
 	@Service
-	public class UserDao {
+	public class UserService {
 		
 		@Autowired
 		UserRepository userRepository;
