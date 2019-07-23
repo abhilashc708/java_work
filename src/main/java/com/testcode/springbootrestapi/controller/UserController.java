@@ -87,5 +87,11 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 	}
+	
+	@RequestMapping("/login/user")
+	public String loginUser()
+	{
+		return "User has logged in";
+	}
 
 }
