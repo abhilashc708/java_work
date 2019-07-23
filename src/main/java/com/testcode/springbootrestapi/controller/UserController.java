@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.testcode.springbootrestapi.UserApplication;
 import com.testcode.springbootrestapi.model.User;
 import com.testcode.springbootrestapi.service.UserService;
 
@@ -43,7 +42,6 @@ public class UserController {
 			System.out.println(e.getMessage());
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
-
 	}
 
 	@GetMapping("/users")
@@ -62,18 +60,7 @@ public class UserController {
 
 	@PutMapping("/users/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @Valid @RequestBody User user) {
-		User usr = userDao.findOne(id);
-		if (usr == null) {
-			return ResponseEntity.notFound().build();
-		}
-		usr.setName(user.getName());
-		usr.setPhone(user.getPhone());
-		usr.setEmail(user.getEmail());
-		usr.setAge(user.getAge());
-		usr.setLocation(user.getLocation());
-		usr.setUpdateddAt(user.getUpdateddAt());
-		usr.setRoles(user.getRoles());
-		User userUpdate = userDao.save(usr);
+		User userUpdate = userDao.update(user, id);
 		return ResponseEntity.ok().body(userUpdate);
 	}
 
