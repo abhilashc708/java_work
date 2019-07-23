@@ -70,17 +70,5 @@
 	</properties>
 	<build>
 		<finalName>springbootrestapi</finalName>
-		 <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>2.1.6.RELEASE</version>
-        <configuration>
-          <jvmArguments>
-            -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
-          </jvmArguments>
-        </configuration>
-      </plugin>
-    </plugins>
 	</build>
 </project>
