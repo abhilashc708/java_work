@@ -1,20 +1,18 @@
 package com.testcode.springbootrestapi.controller;
 
-import java.net.URI;
+
+import java.util.Set;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.testcode.springbootrestapi.dto.WorkersDTO;
+import com.testcode.springbootrestapi.model.Services;
 import com.testcode.springbootrestapi.model.Workers;
 import com.testcode.springbootrestapi.service.ServicesService;
 import com.testcode.springbootrestapi.service.WorkerService;
@@ -32,11 +30,14 @@ public class WorkerController {
 	@PostMapping("/services/{id}/workers")
 	public Workers addWorkers(@PathVariable Long id,
 			@Valid @RequestBody Workers workers) {
-		return servicesService.findOne(id)
-		  .map(service -> {
+		Services services = servicesService.findOne(id);
+		//return servicesService.findOne(id)
+		workers.setServices(services);
+		return workerService.save(workers);
+		  /*.map(service -> {
 			  workers.setServices(service);
 			return workerService.save(workers);
-		}).orElseThrow(() -> new NotFoundException("sevice not found!"));
+		}).orElseThrow(() -> new NotFoundException("sevice not found!"));*/
 		
 		
 		

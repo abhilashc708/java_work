@@ -1,7 +1,8 @@
 package com.testcode.springbootrestapi.model;
 
-import java.io.Serializable;
+
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,16 +28,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javassist.SerialVersionUID;
 
 @Entity
 @Table(name = "workers")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @EntityListeners(AuditingEntityListener.class)
-public class Workers implements Serializable  {
-	private static final long SerialVersionUID = 1L;
+public class Workers  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long worker_id;
@@ -50,11 +48,11 @@ public class Workers implements Serializable  {
 	
 	private String location;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "workers_services",
 	joinColumns = @JoinColumn( name = "worker_id", referencedColumnName="worker_id", nullable = false), 
 	inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName="id" , nullable = false))
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	//@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Services services;
 	
@@ -68,10 +66,6 @@ public class Workers implements Serializable  {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updateddAt;
-
-	public static long getSerialversionuid() {
-		return SerialVersionUID;
-	}
 
 	public Long getWorker_id() {
 		return worker_id;
