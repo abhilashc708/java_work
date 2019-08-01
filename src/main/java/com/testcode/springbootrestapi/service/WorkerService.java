@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.testcode.springbootrestapi.dto.WorkersDTO;
 import com.testcode.springbootrestapi.model.Services;
+import com.testcode.springbootrestapi.model.User;
 import com.testcode.springbootrestapi.model.Workers;
 import com.testcode.springbootrestapi.repository.WorkerRepository;
 
@@ -31,6 +32,10 @@ public class WorkerService {
 		List<Services> services= workersDTO.getServiceIds().stream().map(x->servicesService.findOne(x)).collect(Collectors.toList());
 		workers.setServices(services);
 		return workerRepository.save(workers);
+	}
+	
+	public List<Workers> findAll() {
+		return workerRepository.findAll();
 	}
 
 }
