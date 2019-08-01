@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,6 +25,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "services")
@@ -51,6 +54,21 @@ public class Services {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parentSevice")
 	private Set<Services> childService;
+	@JsonIgnore
+	 @ManyToMany(fetch = FetchType.LAZY,
+	            cascade = {
+	                CascadeType.PERSIST,
+	                CascadeType.MERGE
+	            },
+	            mappedBy = "services")
+	/*@OneToMany(mappedBy = "services", cascade = CascadeType.ALL, fetch = FetchType.LAZY)*/
+	private Set<Workers> workers;
+	
+	public Services() {}
+	
+	public Services(Long serviceIs) {
+		this.id=serviceIs;
+	}
 
 	public Long getId() {
 		return id;
