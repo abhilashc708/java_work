@@ -2,7 +2,7 @@ package com.testcode.springbootrestapi.model;
 
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,20 +13,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -47,14 +46,24 @@ public class Workers  {
 	private String email;
 	
 	private String location;
+	@JsonIgnore
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "workers_services",
+	
+	@ManyToMany(fetch = FetchType.LAZY,
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+@JoinTable(name = "workers_services",
+    joinColumns = { @JoinColumn(name = "worker_id") },
+    inverseJoinColumns = { @JoinColumn(name = "id") })
+	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	/*@JoinTable(name = "workers_services",
 	joinColumns = @JoinColumn( name = "worker_id", referencedColumnName="worker_id", nullable = false), 
 	inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName="id" , nullable = false))
 	//@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
-	private Services services;
+	*/
+	private List<Services> services;
 	
 	public Workers() {}
 	
@@ -107,11 +116,11 @@ public class Workers  {
 		this.location = location;
 	}
 
-	public Services getServices() {
+	public List<Services> getServices() {
 		return services;
 	}
 
-	public void setServices(Services services) {
+	public void setServices(List<Services> services) {
 		this.services = services;
 	}
 

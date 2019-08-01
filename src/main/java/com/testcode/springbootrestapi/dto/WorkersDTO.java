@@ -1,5 +1,7 @@
 package com.testcode.springbootrestapi.dto;
 
+import java.util.List;
+
 import com.testcode.springbootrestapi.model.Services;
 
 public class WorkersDTO {
@@ -8,6 +10,7 @@ public class WorkersDTO {
 	private String phone;
 	private String email;
 	private String location;
+	private List<Long> serviceIds;
 	private Services services;
 	
 	public Long getWorker_id() {
@@ -45,6 +48,12 @@ public class WorkersDTO {
 	}
 	public void setServices(Services services) {
 		this.services = services;
+	}
+	public List<Long> getServiceIds() {
+		return serviceIds;
+	}
+	public void setServiceIds(List<Long> serviceIds) {
+		this.serviceIds = serviceIds;
 	}
 	
 	

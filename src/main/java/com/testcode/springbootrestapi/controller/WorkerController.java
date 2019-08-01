@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.testcode.springbootrestapi.dto.WorkersDTO;
 import com.testcode.springbootrestapi.model.Services;
 import com.testcode.springbootrestapi.model.Workers;
 import com.testcode.springbootrestapi.service.ServicesService;
 import com.testcode.springbootrestapi.service.WorkerService;
 
-@Controller
-@RequestMapping("/worker")
+@RestController
 public class WorkerController {
 
 	@Autowired
@@ -31,13 +32,12 @@ public class WorkerController {
 	@Autowired
 	private ServicesService servicesService;
 	
-	@PostMapping("/services/{id}/workers")
-	public ResponseEntity<?> addWorkers(@PathVariable Long id,
-			@Valid @RequestBody Workers workers) {
+	@PostMapping("/services/workers")
+	public ResponseEntity<?> addWorkers(@RequestBody WorkersDTO workersDTO) {
 		try {
-			Services services = servicesService.findOne(id);
-			workers.setServices(services);
-			workers = workerService.save(workers);
+			//Services services = servicesService.findOne(id);
+			//workers.setServices(services);
+			Workers workers = workerService.save(workersDTO);
 			return ResponseEntity.ok(workers);
 		}
 		catch (Exception e) {
