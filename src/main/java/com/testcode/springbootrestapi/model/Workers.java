@@ -56,7 +56,7 @@ public class Workers  {
     })
 @JoinTable(name = "workers_services",
     joinColumns = { @JoinColumn(name = "worker_id") },
-    inverseJoinColumns = { @JoinColumn(name = "id") })
+    inverseJoinColumns = { @JoinColumn(name = "services_id", unique = false) })
 	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	/*@JoinTable(name = "workers_services",
 	joinColumns = @JoinColumn( name = "worker_id", referencedColumnName="worker_id", nullable = false), 
