@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -51,6 +52,11 @@ public class Services {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parentSevice")
 	private Set<Services> childService;
+	
+	@OneToMany(mappedBy = "services", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Workers> workers;
+	
+	public Services() {}
 
 	public Long getId() {
 		return id;
